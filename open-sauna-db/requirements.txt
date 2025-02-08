@@ -17,6 +17,7 @@ MarkupSafe==3.0.2
 mdurl==0.1.2
 mongoengine==0.29.1
 pydantic==2.10.6
+pydantic-extra-types==2.10.2
 pydantic_core==2.27.2
 Pygments==2.19.1
 pymongo==4.11

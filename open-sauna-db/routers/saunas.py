@@ -1,6 +1,6 @@
 from typing import List
 from fastapi import APIRouter
-from models import Sauna
+from models import Sauna, CreateSauna
 
 router = APIRouter()
 
@@ -15,5 +15,5 @@ def get_sauna(sauna_id: int):
 
 #Post
 @router.post("/", response_model=Sauna)
-def create_sauna():
+def create_sauna(sauna: CreateSauna):
     """Creates a new sauna and inserts it into the database."""
