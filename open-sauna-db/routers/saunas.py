@@ -10,12 +10,14 @@ router = APIRouter()
 @router.get("/", response_model=List[Sauna])
 def get_all_saunas():
     """Returns all saunas in the database."""
+    # pylint: disable=no-member
     saunas = models.Sauna.objects()
     return saunas
 
 @router.get("/{sauna_id}", response_model=Sauna)
 def get_sauna(sauna_id: int):
     """ Get a specific sauna by supplying an id."""
+    # pylint: disable=no-member
     sauna = models.Sauna.objects(sauna_id=sauna_id).first()
     return sauna
 
