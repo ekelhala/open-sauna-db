@@ -1,17 +1,19 @@
+from typing import List
 from fastapi import APIRouter
+from models import Sauna
 
 router = APIRouter()
 
 # Get
-@router.get("/")
+@router.get("/", response_model=List[Sauna])
 def get_all_saunas():
-    pass
+    """Returns all saunas in the database."""
 
-@router.get("/{sauna_id}")
+@router.get("/{sauna_id}", response_model=Sauna)
 def get_sauna(sauna_id: int):
-    pass
+    """ Get a specific sauna by supplying an id."""
 
 #Post
-@router.post("/")
+@router.post("/", response_model=Sauna)
 def create_sauna():
-    pass
+    """Creates a new sauna and inserts it into the database."""
