@@ -7,7 +7,7 @@ class Sauna(BaseModel):
     """
     location: Coordinate
     name: str
-    id: int
+    sauna_id: int
 
 class CreateSauna(BaseModel):
     """
