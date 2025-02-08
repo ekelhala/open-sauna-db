@@ -20,15 +20,15 @@ def get_sauna(sauna_id: int):
     return sauna
 
 #Post
-@router.post("/", response_model=Sauna)
+@router.post("/", response_model=Sauna, status_code=201)
 def create_sauna(sauna: CreateSauna):
     """Creates a new sauna and inserts it into the database."""
     try:
         new_sauna = models.Sauna(
                                 name=sauna.name,
-                                location=[sauna.location.longitude, sauna.location.latitude],
+                                location=sauna.location,
                                 stove_type=sauna.stove_type.value)
         new_sauna.save()
-        return JSONResponse(new_sauna.to_json(), 201)
+        return new_sauna
     except Exception:
         return JSONResponse({"error": "Invalid request"}, 400)

@@ -5,4 +5,4 @@ from db import driver
 app = FastAPI()
 driver.init()
 
-app.include_router(router=saunas, prefix="/saunas")
+app.include_router(router=saunas.router, prefix="/saunas")
