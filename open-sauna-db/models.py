@@ -1,5 +1,10 @@
+from enum import Enum
 from pydantic import BaseModel
 from pydantic_extra_types.coordinate import Coordinate
+
+class StoveType(Enum):
+    wood = 'wood'
+    electric = 'electric'
 
 class Sauna(BaseModel):
     """
@@ -8,6 +13,7 @@ class Sauna(BaseModel):
     location: Coordinate
     name: str
     sauna_id: int
+    stove_type: StoveType
 
 class CreateSauna(BaseModel):
     """
@@ -16,3 +22,4 @@ class CreateSauna(BaseModel):
     """
     location: Coordinate
     name: str
+    stove_type: StoveType
