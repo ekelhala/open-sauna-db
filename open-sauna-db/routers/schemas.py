@@ -13,7 +13,7 @@ class LocationSchema(BaseModel):
     longitude: float = Field(..., ge=-180, le=180,
                             description="Longitude must be between -180 and 180")
 
-class SaunaScheme(BaseModel):
+class SaunaSchema(BaseModel):
     """
     Common model for handling saunas in API calls
     """
@@ -22,7 +22,7 @@ class SaunaScheme(BaseModel):
     sauna_id: str
     stove_type: StoveType
 
-class CreateSaunaScheme(BaseModel):
+class CreateSaunaSchema(BaseModel):
     """
     Specifies parameters for creating a new sauna.
     Used in API calls for sauna creation.

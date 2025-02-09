@@ -17,7 +17,6 @@ class Sauna(Document):
         Returns this Sauna document as a Python dictionary
         """
         data = self.to_mongo().to_dict()
-        print(data)
         coordinates = data["location"]["coordinates"]
         data["location"] = {"longitude": coordinates[0], "latitude": coordinates[1]}
         return data
