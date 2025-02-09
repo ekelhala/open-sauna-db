@@ -1,5 +1,5 @@
 from enum import Enum
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import List
 
 class StoveType(Enum):
@@ -9,20 +9,25 @@ class StoveType(Enum):
     WOOD = 'wood'
     ELECTRIC = 'electric'
 
-class Sauna(BaseModel):
+class LocationSchema(BaseModel):
+    latitude: float = Field(..., ge=-90, le=90, description="Latitude must be between -90 and 90")
+    longitude: float = Field(..., ge=-180, le=180,
+                            description="Longitude must be between -180 and 180")
+
+class SaunaScheme(BaseModel):
     """
     Common model for handling saunas in API calls
     """
-    location: List[float]
+    location: LocationSchema
     name: str
     sauna_id: str
     stove_type: StoveType
 
-class CreateSauna(BaseModel):
+class CreateSaunaScheme(BaseModel):
     """
     Specifies parameters for creating a new sauna.
     Used in API calls for sauna creation.
     """
-    location: List[float]
+    location: LocationSchema
     name: str
     stove_type: StoveType
