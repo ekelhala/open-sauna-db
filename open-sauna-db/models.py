@@ -15,7 +15,7 @@ class Sauna(BaseModel):
     """
     location: List[float]
     name: str
-    sauna_id: int
+    sauna_id: str
     stove_type: StoveType
 
 class CreateSauna(BaseModel):
