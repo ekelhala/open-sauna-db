@@ -1,3 +1,4 @@
+from datetime import datetime
 from enum import Enum
 from pydantic import BaseModel, Field
 
@@ -30,3 +31,21 @@ class CreateSaunaSchema(BaseModel):
     location: LocationSchema
     name: str
     stove_type: StoveType
+
+class ReviewSchema(BaseModel):
+    """
+    Schema for API responses representing a review
+    """
+    review_id: str
+    for_sauna: str
+    stars: int
+    text: str
+    by_user: str
+    created_at: datetime
+
+class CreateReviewSchema(BaseModel):
+    """
+    Used for validating the received review data
+    """
+    stars: int
+    text: str
