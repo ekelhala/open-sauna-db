@@ -1,8 +1,9 @@
 from typing import List
-from fastapi import APIRouter
+from datetime import datetime
+from fastapi import APIRouter, HTTPException
 
 from routers.schemas import ReviewSchema, CreateReviewSchema
-from db.models import Review
+from db.models import Review, Sauna
 
 router = APIRouter()
 
@@ -20,6 +21,18 @@ def create_review_for_sauna(sauna_id: str, review_data: CreateReviewSchema):
     """
     Creates a new review for a given sauna
     """
+    # pylint: disable=no-member
+    if Sauna.objects(sauna_id=sauna_id).first():
+        new_review = Review(
+            for_sauna=sauna_id,
+            by_user="fake-id",
+            stars=review_data.stars,
+            text=review_data.text,
+            created_at=datetime.now()
+        )
+        new_review.save()
+        return new_review
+    raise HTTPException(status_code=404, detail=f"Sauna {sauna_id} does not exist")
 
 @router.get("/{review_id}", response_model=ReviewSchema)
 def get_review(review_id: str):
