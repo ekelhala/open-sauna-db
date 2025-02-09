@@ -49,3 +49,18 @@ class CreateReviewSchema(BaseModel):
     """
     stars: int
     text: str
+
+class GetUserSchema(BaseModel):
+    """
+    Schema for getting information about a user without sensitive data
+    """
+    username: str
+    user_id: str
+
+class CreateUserSchema(BaseModel):
+    """
+    Schema for user creation
+    """
+    username: str
+    password: str
+    email: str

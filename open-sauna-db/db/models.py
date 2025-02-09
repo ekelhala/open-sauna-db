@@ -1,5 +1,5 @@
 from uuid import uuid4
-from mongoengine import Document, PointField, StringField, IntField, DateTimeField
+from mongoengine import Document, PointField, StringField, IntField, DateTimeField, EmailField
 
 STOVE_TYPE = ('wood', 'electric')
 
@@ -28,3 +28,9 @@ class Review(Document):
     text = StringField()
     stars = IntField()
     created_at = DateTimeField()
+
+class User(Document):
+    user_id = StringField(default=lambda: str(uuid4()))
+    username = StringField(unique=True)
+    password_hash = StringField()
+    email = EmailField(unique=True)
