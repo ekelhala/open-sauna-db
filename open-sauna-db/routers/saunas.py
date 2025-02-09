@@ -2,6 +2,7 @@ from typing import List
 from fastapi import APIRouter, HTTPException
 from models import SaunaScheme, CreateSaunaScheme
 from db.models import Sauna
+from mongoengine import ValidationError
 
 router = APIRouter()
 
@@ -31,6 +32,5 @@ def create_sauna(sauna: CreateSaunaScheme):
                             stove_type=sauna.stove_type.value)
         new_sauna.save()
         return new_sauna.to_dict()
-    except Exception as e:
-        print(e)
+    except ValidationError as e:
         raise HTTPException(400, "Invalid request") from e

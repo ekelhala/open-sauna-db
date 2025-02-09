@@ -13,6 +13,9 @@ class Sauna(Document):
     stove_type = StringField(choices=STOVE_TYPE)
 
     def to_dict(self):
+        """
+        Returns this Sauna document as a Python dictionary
+        """
         data = self.to_mongo().to_dict()
         print(data)
         coordinates = data["location"]["coordinates"]
