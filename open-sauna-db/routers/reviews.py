@@ -13,8 +13,9 @@ def get_reviews_for_sauna(sauna_id: str):
     Gets the reviews for given sauna.
     """
     # pylint: disable=no-member
-    reviews = Review.objects(for_sauna=sauna_id)
-    return reviews
+    if Sauna.objects(sauna_id=sauna_id):
+        return Review.objects(for_sauna=sauna_id)
+    raise HTTPException(status_code=404, detail=f"Sauna {sauna_id} does not exist")
 
 @router.post("/sauna/{sauna_id}", response_model=ReviewSchema, status_code=201)
 def create_review_for_sauna(sauna_id: str, review_data: CreateReviewSchema):

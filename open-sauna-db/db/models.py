@@ -1,5 +1,5 @@
 from uuid import uuid4
-from mongoengine import Document, PointField, StringField, IntField, DateField
+from mongoengine import Document, PointField, StringField, IntField, DateTimeField
 
 STOVE_TYPE = ('wood', 'electric')
 
@@ -22,9 +22,9 @@ class Sauna(Document):
         return data
 
 class Review(Document):
-    review_id: StringField(default=lambda: str(uuid4()))
-    for_sauna: StringField()
-    by_user: StringField()
-    text: StringField()
-    stars: IntField()
-    created_at: DateField()
+    review_id = StringField(default=lambda: str(uuid4()))
+    for_sauna = StringField()
+    by_user = StringField()
+    text = StringField()
+    stars = IntField()
+    created_at = DateTimeField()
