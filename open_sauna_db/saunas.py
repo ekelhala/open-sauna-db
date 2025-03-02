@@ -1,3 +1,6 @@
+"""
+This module composes all sauna resources
+"""
 from flask import Blueprint
 from flask_restful import Api
 

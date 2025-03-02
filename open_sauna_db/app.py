@@ -1,3 +1,6 @@
+"""
+This is the main module for the API
+"""
 from flask import Flask
 
 from open_sauna_db.db import driver

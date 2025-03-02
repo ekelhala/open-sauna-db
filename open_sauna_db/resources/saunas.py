@@ -1,12 +1,15 @@
+"""
+Resource definitions for sauna-related resources
+"""
 from flask_restful import Resource
 from flask import jsonify
-from werkzeug.routing import BaseConverter
-from werkzeug.exceptions import NotFound
 
 from open_sauna_db.db.models import Sauna
 
 class SaunaCollection(Resource):
-
+    """
+    Resource for interacting with all saunas
+    """
     def get(self):
         """
         Get all saunas in database
@@ -18,6 +21,9 @@ class SaunaCollection(Resource):
         )
 
 class SaunaItem(Resource):
+    """
+    Resource for interacting with a single sauna
+    """
 
     def get(self, sauna):
         """

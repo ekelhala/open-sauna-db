@@ -1,3 +1,6 @@
+"""
+This module contains the database model definitions
+"""
 from uuid import uuid4
 from mongoengine import Document, PointField, StringField, IntField, DateTimeField, EmailField
 
