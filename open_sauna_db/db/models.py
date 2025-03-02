@@ -19,7 +19,7 @@ class Sauna(Document):
         """
         Returns this Sauna document as a Python dictionary
         """
-        doc = {
+        return {
             "location": {
                 "longitude": self.location["coordinates"][0],
                 "latitude": self.location["coordinates"][1]
@@ -28,7 +28,6 @@ class Sauna(Document):
             "sauna_id": self.sauna_id,
             "stove_type": self.stove_type
         }
-        return doc
 
 class Review(Document):
     review_id = StringField(default=lambda: str(uuid4()))
@@ -53,3 +52,10 @@ class User(Document):
     username = StringField(unique=True)
     password_hash = StringField()
     email = EmailField(unique=True)
+
+    def to_json(self):
+        return {
+            "user_id": self.user_id,
+            "username": self.username,
+            "email": self.email
+        }
