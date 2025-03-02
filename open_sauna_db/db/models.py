@@ -12,14 +12,20 @@ class Sauna(Document):
     sauna_id = StringField(default=lambda: str(uuid4()))
     stove_type = StringField(choices=STOVE_TYPE)
 
-    def to_dict(self):
+    def to_json(self):
         """
         Returns this Sauna document as a Python dictionary
         """
-        data = self.to_mongo().to_dict()
-        coordinates = data["location"]["coordinates"]
-        data["location"] = {"longitude": coordinates[0], "latitude": coordinates[1]}
-        return data
+        doc = {
+            "location": {
+                "longitude": self.location["coordinates"][0],
+                "latitude": self.location["coordinates"][1]
+            },
+            "name": self.name,
+            "sauna_id": self.sauna_id,
+            "stove_type": self.stove_type
+        }
+        return doc
 
 class Review(Document):
     review_id = StringField(default=lambda: str(uuid4()))
@@ -28,6 +34,16 @@ class Review(Document):
     text = StringField()
     stars = IntField()
     created_at = DateTimeField()
+
+    def to_json(self):
+        return {
+            "review_id": self.review_id,
+            "for_sauna": self.for_sauna,
+            "by_user": self.by_user,
+            "text": self.text,
+            "stars": self.stars,
+            "created_at": str(self.created_at)
+        }
 
 class User(Document):
     user_id = StringField(default=lambda: str(uuid4()))
