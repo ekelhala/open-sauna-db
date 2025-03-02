@@ -64,3 +64,10 @@ class CreateUserSchema(BaseModel):
     username: str
     password: str
     email: str
+
+class AuthenticateUserSchema(BaseModel):
+    """
+    Schema for user authentication
+    """
+    email: str
+    password: str
